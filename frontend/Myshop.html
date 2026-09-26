@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MyShop - Online Store</title>
+  <link rel="stylesheet" href="MyShop.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header>
+    <h1>MyShop 🛒</h1>
+    <nav>
+      <button onclick="showSection('productsSection')">Products</button>
+      <button onclick="showSection('cartSection')">Cart (<span id="cartCount">0</span>)</button>
+      <button onclick="showSection('ordersSection')">My Orders</button>
+      <button onclick="showSection('adminSection')" id="adminBtn" style="display:none;">Admin Panel</button>
+    </nav>
+    <div class="user-box">
+      <span id="userInfo">Not logged in</span>
+      <button onclick="showSection('loginSection')" id="loginBtn">Login</button>
+      <button onclick="logout()" id="logoutBtn" style="display:none;">Logout</button>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- 1. LOGIN / REGISTER SECTION -->
+    <section id="loginSection" class="card">
+      <h2>Login to Your Account</h2>
+      <form onsubmit="handleLogin(event)">
+        <label>Select Role:</label>
+        <select id="userRole">
+          <option value="user">User (Customer)</option>
+          <option value="admin">Admin</option>
+        </select>
+
+        <label>Username:</label>
+        <input type="text" id="usernameInput" placeholder="Enter your name" required>
+
+        <button type="submit" class="btn">Login</button>
+      </form>
+    </section>
+
+    <!-- 2. PRODUCT CATALOG SECTION -->
+    <section id="productsSection">
+      <h2>Product Catalog</h2>
+      
+      <!-- Search & Filter -->
+      <div class="filter-box">
+        <input type="text" id="searchInput" placeholder="Search product..." onkeyup="loadProducts()">
+        <select id="categorySelect" onchange="loadProducts()">
+          <option value="All">All Categories</option>
+          <option value="Electronics">Electronics</option>
+          <option value="Clothing">Clothing</option>
+          <option value="Books">Books</option>
+        </select>
+      </div>
+
+      <!-- Products Grid -->
+      <div id="productGrid" class="grid">
+        <!-- Products will be loaded here using JavaScript -->
+      </div>
+    </section>
+
+    <!-- 3. SHOPPING CART & CHECKOUT SECTION -->
+    <section id="cartSection" style="display:none;" class="card">
+      <h2>Your Shopping Cart</h2>
+      <div id="cartItems">
+        <!-- Cart items will show here -->
+      </div>
+      <h3 id="cartTotal">Total: $0</h3>
+      
+      <hr>
+      
+      <h3>Checkout Details</h3>
+      <form onsubmit="handleCheckout(event)">
+        <label>Shipping Address:</label>
+        <textarea id="addressInput" placeholder="Enter full address" required></textarea>
+        
+        <label>Payment Option:</label>
+        <select id="paymentMethod">
+          <option value="Cash on Delivery">Cash on Delivery</option>
+          <option value="Card Payment">Debit / Credit Card</option>
+        </select>
+        
+        <button type="submit" class="btn btn-success">Place Order</button>
+      </form>
+    </section>
+
+    <!-- 4. USER ORDER TRACKING SECTION -->
+    <section id="ordersSection" style="display:none;" class="card">
+      <h2>My Orders & Status</h2>
+      <div id="userOrdersList">
+        <!-- User orders will show here -->
+      </div>
+    </section>
+
+    <!-- 5. ADMIN MANAGEMENT PANEL -->
+    <section id="adminSection" style="display:none;" class="card">
+      <h2>Admin Panel</h2>
+
+      <!-- Form to Add New Product -->
+      <div class="admin-box">
+        <h3>Add New Product</h3>
+        <form onsubmit="handleAddProduct(event)">
+          <input type="text" id="newProdName" placeholder="Product Name" required>
+          <input type="text" id="newProdCategory" placeholder="Category (e.g. Electronics)" required>
+          <input type="number" id="newProdPrice" placeholder="Price ($)" required>
+          <input type="text" id="newProdImg" placeholder="Image URL (optional)">
+          <button type="submit" class="btn">Add Product</button>
+        </form>
+      </div>
+
+      <!-- Manage Customer Orders -->
+      <div class="admin-box">
+        <h3>Manage Customer Orders</h3>
+        <div id="adminOrdersList">
+          <!-- All orders will show here for admin to change status -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2026 MyShop - Built for Web Development Project</p>
+  </footer>
+
+  <script src="Myshop.js"></script>
+</body>
+</html>

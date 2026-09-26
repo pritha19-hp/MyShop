@@ -1,0 +1,16 @@
+{
+  "name": "myshop-simple",
+  "version": "1.0.0",
+  "description": "Simple beginner e-commerce website",
+  "main": "server.js",
+  "scripts": {
+  "start": "node backend/server.js"
+}
+  ,
+  "dependencies": {
+    "express": "^4.19.2",
+    "cors": "^2.8.5"
+  }
+  
+}
+
